@@ -89,6 +89,8 @@ def lint(erc_path, assets_root, number):
     for dirpath, _, filenames in os.walk(assets_root):
         for f in filenames:
             p = os.path.join(dirpath, f)
+            if os.path.getsize(p) == 0:
+                problems.append(f"empty asset file: {os.path.relpath(p, ROOT)}")
             try:
                 if re.search("[\\u4e00-\\u9fff]", open(p, encoding="utf-8").read()):
                     problems.append(f"CJK characters in asset {os.path.relpath(p, ROOT)}")
@@ -121,7 +123,9 @@ def main():
     copy_tree(os.path.join(ROOT, "assets", f"erc-{SRC_NUM}"), assets_dst)
     ctx = os.path.join(assets_dst, "contexts", "geof.jsonld")
     if os.path.exists(ctx):
-        open(ctx, "w", encoding="utf-8").write(rewrite_number(open(ctx, encoding="utf-8").read(), number))
+        ctx_text = open(ctx, encoding="utf-8").read()  # read fully before opening for write
+        with open(ctx, "w", encoding="utf-8") as fh:
+            fh.write(rewrite_number(ctx_text, number))
 
     problems = lint(erc_dst, assets_dst, number)
     count = sum(len(f) for _, _, f in os.walk(out))

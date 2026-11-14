@@ -6,6 +6,11 @@ GEOF is a descriptive framework for how generative engines — answer engines, A
 
 GEOF assigns no desirability to any value. It defines no thresholds, weights, ranking algorithms, engine policies, anti-abuse rules or licensing mechanics, and it does not say what "good GEO" is.
 
+## Links
+
+- Discussion: https://ethereum-magicians.org/t/draft-erc-generative-engine-optimization-framework-geof-attributable-declarations-observation-commitments-and-profiles-for-how-generative-engines-represent-objects/30396
+- ERC pull request: to be added after filing (ethereum/ERCs, branch `add-erc-geo-framework`, placeholder number 9999)
+
 ## What it defines
 
 - **Eight record types**, content-addressed (JCS + keccak256): Object, Frame, Source, Method, Intent, Metric Definition, Observation, Profile.

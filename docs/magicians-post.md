@@ -1,4 +1,6 @@
-# Ethereum Magicians — first post (draft)
+# Ethereum Magicians — first post
+
+Posted 2026-11-14 as topic 30396: https://ethereum-magicians.org/t/draft-erc-generative-engine-optimization-framework-geof-attributable-declarations-observation-commitments-and-profiles-for-how-generative-engines-represent-objects/30396
 
 **Category:** ERCs
 **Title:** Draft ERC: Generative Engine Optimization Framework (GEOF) — attributable declarations, observation commitments and profiles for how generative engines represent objects
