@@ -16,7 +16,7 @@ It lets independent parties declare, for the same object or dissemination proces
 It assigns no desirability to any value. No thresholds, weights, ranking algorithms, engine policies, anti-abuse rules or licensing mechanics, and no definition of "good GEO".
 
 Repository: `https://github.com/garyyang-finchip/geo-framework`
-ERC pull request: to be added after filing.
+ERC pull request: https://github.com/ethereum/ERCs/pull/2176
 
 ## Why
 
