@@ -1,0 +1,11 @@
+# build and run artifacts
+out/
+cache/
+broadcast/
+lib/
+tools/node_modules/
+# local state and keys
+*.env
+.env*
+!.env.example
+deployments/*.local.json
