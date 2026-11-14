@@ -1,0 +1,118 @@
+{
+  "case": "B — narrow reach, full fidelity, full attainment, attribution declared not estimated",
+  "note": "Illustrative records. Hashes and addresses are synthetic placeholders. A skill provider wants exactly three procurement agents to discover and use a skill. Public discovery exposure is tiny; the three targets all invoke and settle. The same framework that described case A describes this.",
+
+  "objects": [
+    {
+      "type": "geof:object", "version": 1,
+      "subjectId": "0x00000000000000000000000000000000000000000000000000000000000000b1",
+      "canonicalSubject": "caip19:eip155:11155111:erc721:0x8338000000000000000000000000000000000001/42",
+      "kind": "skill",
+      "identifiers": [{ "scheme": "caip19", "value": "eip155:11155111/erc721:0x8338000000000000000000000000000000000001/42" }, { "scheme": "urn", "value": "urn:ard:skill:provider.example:settlement-reconciler" }],
+      "externalRecords": [{ "system": "erc-8444", "ref": "0x8444000000000000000000000000000000000000000000000000000000000042", "chainId": "eip155:11155111" }, { "system": "erc-8338", "ref": "0x8338000000000000000000000000000000000001/42", "chainId": "eip155:11155111" }],
+      "holderClaims": [{ "claimant": "0x3333333333333333333333333333333333333333", "basis": "registry-record", "evidence": "erc-8444 record controller == claimant" }],
+      "provenance": { "declarant": "0x3333333333333333333333333333333333333333", "declaredAt": 1800000000 }
+    }
+  ],
+
+  "intent": {
+    "type": "geof:intent", "version": 1,
+    "mode": "ex-ante",
+    "audience": { "scope": "enumerated", "values": ["did:aid:0xA1a1...", "did:aid:0xA2a2...", "did:aid:0xA3a3..."] },
+    "content": ["0x00000000000000000000000000000000000000000000000000000000000000b1"],
+    "expectedChange": ["invoked", "acted"],
+    "conditions": ["acted = a task tender settled against the skill"],
+    "evaluationWindow": { "start": "2026-11-01", "end": "2026-11-14" },
+    "provenance": { "declarant": "0x3333333333333333333333333333333333333333", "declaredAt": 1800000100 }
+  },
+
+  "frame": {
+    "type": "geof:frame", "version": 1,
+    "dimensions": {
+      "time": { "scope": "enumerated", "values": [{ "start": "2026-11-01", "end": "2026-11-14" }], "coverageObserved": [{ "start": "2026-11-01", "end": "2026-11-14" }] },
+      "engines": { "scope": "enumerated", "values": [{ "id": "ard-gateway-1", "surface": "discovery-api" }, { "id": "mcp-registry-1", "surface": "discovery-api" }], "coverageObserved": ["ard-gateway-1", "mcp-registry-1"] },
+      "queries": { "scope": "not-applicable" },
+      "locales": { "scope": "not-applicable" },
+      "objects": { "scope": "enumerated", "values": ["0x00000000000000000000000000000000000000000000000000000000000000b1"] },
+      "observers": { "scope": "enumerated", "values": ["0x3333333333333333333333333333333333333333"] },
+      "repetition": { "scope": "not-applicable" }
+    },
+    "observationGranularity": "individual",
+    "disclosureGranularity": "commitment-only",
+    "clocks": { "eventEnd": "discovery response delivered", "processClose": "2026-11-15", "observationCutoff": "2026-11-21" },
+    "provenance": { "declarant": "0x3333333333333333333333333333333333333333", "declaredAt": 1800000200 }
+  },
+
+  "sources": [
+    { "type": "geof:source", "version": 1, "name": "gateway-logs", "class": "publisher-side", "roles": ["observation"], "party": "first", "access": "provider's own gateway access logs: who fetched the skill descriptor", "verifiability": "signed", "coverage": "fetches of this provider's descriptors only; public discovery query volume reported by the gateway operator as a monthly aggregate", "provenance": { "declarant": "0x3333333333333333333333333333333333333333", "declaredAt": 1800000200 } },
+    { "type": "geof:source", "version": 1, "name": "chain", "class": "onchain", "roles": ["observation", "evaluation"], "party": "third", "access": "RPC reads of the skill-token and task-tender contracts", "verifiability": "replayable", "provenance": { "declarant": "0x3333333333333333333333333333333333333333", "declaredAt": 1800000200 } },
+    { "type": "geof:source", "version": 1, "name": "canonical-descriptor", "class": "onchain", "roles": ["engine-input", "evaluation"], "party": "first", "access": "descriptor hash committed in the value-registry record", "verifiability": "replayable", "provenance": { "declarant": "0x3333333333333333333333333333333333333333", "declaredAt": 1800000200 } }
+  ],
+
+  "methods": [
+    { "type": "geof:method", "version": 1, "name": "descriptor-hash-match-v1", "class": "verification", "role": "evaluator", "parameters": { "comparison": "keccak256 of served descriptor == committed descriptor hash" }, "inputs": ["publisher-side", "onchain"], "outputs": ["geof:fidelity/relay-fidelity/v1"], "limitations": [], "reproducibility": "deterministic", "provenance": { "declarant": "0x3333333333333333333333333333333333333333", "declaredAt": 1800000200 } },
+    { "type": "geof:method", "version": 1, "name": "chain-link-v1", "class": "attribution", "role": "evaluator", "parameters": { "link": "skill call tx -> tender settlement tx by shared tenderId" }, "inputs": ["onchain"], "outputs": ["geof:attainment/attainment-rate/v1"], "limitations": ["links invocation to settlement; does not estimate whether the agents would have found the skill otherwise"], "reproducibility": "deterministic", "provenance": { "declarant": "0x3333333333333333333333333333333333333333", "declaredAt": 1800000200 } },
+    { "type": "geof:method", "version": 1, "name": "counts-v1", "class": "aggregation", "role": "evaluator", "parameters": {}, "inputs": ["publisher-side", "onchain"], "outputs": [], "limitations": [], "provenance": { "declarant": "0x3333333333333333333333333333333333333333", "declaredAt": 1800000200 } }
+  ],
+
+  "observations_sample": [
+    {
+      "type": "geof:observation", "version": 1, "kind": "event",
+      "observer": "0x3333333333333333333333333333333333333333",
+      "sourceRefs": [{ "hash": "0x5000000000000000000000000000000000000000000000000000000000000b01" }],
+      "recordedAt": 1800300000,
+      "event": {
+        "runId": "B-disc-A1-01",
+        "origin": {
+          "trigger": { "initiator": "recipient", "priorAuthorization": "none", "immediateQuery": true, "queryRef": "capability:settlement-reconciliation", "queryIntent": "agentic-task" },
+          "engine": { "id": "ard-gateway-1", "surface": "discovery-api" },
+          "recipientClass": "agent",
+          "delivery": { "channel": "tool-result" },
+          "time": "2026-11-03T14:12:09Z"
+        },
+        "course": { "retrieved": "OBSERVED", "selected": "UNOBSERVED", "synthesized": "NOT_APPLICABLE", "attributed": "NOT_APPLICABLE", "delivered": "OBSERVED" },
+        "conclusion": [
+          { "objectRef": "0x00000000000000000000000000000000000000000000000000000000000000b1", "kind": "INVOKED", "actor": "recipient", "fidelityFlags": [] }
+        ]
+      }
+    },
+    {
+      "type": "geof:observation", "version": 1, "kind": "followup",
+      "observer": "0x3333333333333333333333333333333333333333",
+      "sourceRefs": [{ "hash": "0x5000000000000000000000000000000000000000000000000000000000000b02" }],
+      "recordedAt": 1800400000,
+      "followup": { "action": "TRANSACTED", "objectRef": "0x00000000000000000000000000000000000000000000000000000000000000b1", "recipientRef": "did:aid:0xA1a1...", "time": "2026-11-04T10:02:51Z", "linkBasis": "deterministic", "linkedEvents": ["B-disc-A1-01"], "externalRecord": { "system": "erc-8414", "ref": "tenderId 17, acceptFulfillment tx 0x...", "chainId": "eip155:11155111" }, "amount": { "value": "1000000000000000", "unit": "wei" } }
+    },
+    {
+      "type": "geof:observation", "version": 1, "kind": "aggregate",
+      "observer": "0x3333333333333333333333333333333333333333",
+      "sourceRefs": [{ "hash": "0x5000000000000000000000000000000000000000000000000000000000000b01" }],
+      "recordedAt": 1800500000,
+      "reportedAt": "2026-11-15 gateway monthly report",
+      "aggregate": { "period": { "start": "2026-11-01", "end": "2026-11-14" }, "granularity": "engine", "engine": "ard-gateway-1", "objectRef": "0x00000000000000000000000000000000000000000000000000000000000000b1", "counts": { "geof:exposure/retrieval-inclusion-rate/v1:numerator": 9, "geof:exposure/retrieval-inclusion-rate/v1:denominator": 212 } }
+    }
+  ],
+
+  "profile": {
+    "type": "geof:profile", "version": 1,
+    "publisher": "0x3333333333333333333333333333333333333333",
+    "processRef": "0x7000000000000000000000000000000000000000000000000000000000000b01",
+    "processVersion": 1,
+    "visibilityScope": "Provider as first-party observer: sees descriptor fetches and on-chain calls/settlements; public discovery volume only as the gateway's aggregate; no view of the agents' internal ranking.",
+    "unverifiedPremises": ["The gateway's reported 212 capability queries in the period are complete."],
+    "statements": [
+      { "statementId": "s1", "metricRef": "geof:exposure/retrieval-inclusion-rate/v1", "objectRef": "0x...b1", "value": 0.042, "numeratorCount": 9, "denominatorCount": 212, "coverage": { "withRecords": 212, "population": 212 }, "window": { "start": "2026-11-01", "end": "2026-11-14" }, "frameRef": { "hash": "0x4000000000000000000000000000000000000000000000000000000000000b01" }, "sourceRefs": [{ "hash": "0x5000000000000000000000000000000000000000000000000000000000000b01" }], "methodRef": { "hash": "0x6000000000000000000000000000000000000000000000000000000000000b03" }, "uncertainty": { "kind": "qualitative", "note": "aggregate from gateway report; no instance data for the 203 non-matching queries" }, "rationale": "The skill appeared in 9 of 212 public capability queries on ard-gateway-1 in the period. Low exposure is a fact, not a verdict." },
+      { "statementId": "s2", "metricRef": "geof:exposure/targeted-reach/v1", "objectRef": "0x...b1", "intentRef": { "hash": "0x3000000000000000000000000000000000000000000000000000000000000b01" }, "value": 1.0, "numeratorCount": 3, "denominatorCount": 3, "coverage": { "withRecords": 3, "population": 3 }, "window": { "start": "2026-11-01", "end": "2026-11-14" }, "frameRef": { "hash": "0x4000000000000000000000000000000000000000000000000000000000000b01" }, "sourceRefs": [{ "hash": "0x5000000000000000000000000000000000000000000000000000000000000b01" }], "methodRef": { "hash": "0x6000000000000000000000000000000000000000000000000000000000000b03" }, "uncertainty": { "kind": "qualitative", "note": "signed gateway logs" }, "rationale": "All three intended agents fetched the descriptor at least once. Denominator is the intended audience, not the public." },
+      { "statementId": "s3", "metricRef": "geof:presentation/recommendation-rate/v1", "objectRef": "0x...b1", "value": "UNOBSERVED", "coverage": { "withRecords": 0, "population": 3 }, "window": { "start": "2026-11-01", "end": "2026-11-14" }, "frameRef": { "hash": "0x4000000000000000000000000000000000000000000000000000000000000b01" }, "sourceRefs": [{ "hash": "0x5000000000000000000000000000000000000000000000000000000000000b01" }], "methodRef": { "hash": "0x6000000000000000000000000000000000000000000000000000000000000b03" }, "uncertainty": "UNOBSERVED", "rationale": "Whether the agents' runtimes ranked or recommended the skill internally is not visible to the provider." },
+      { "statementId": "s4", "metricRef": "geof:exposure/invocation-incidence/v1", "objectRef": "0x...b1", "value": 1.0, "numeratorCount": 3, "denominatorCount": 3, "coverage": { "withRecords": 3, "population": 3 }, "window": { "start": "2026-11-01", "end": "2026-11-14" }, "frameRef": { "hash": "0x4000000000000000000000000000000000000000000000000000000000000b01" }, "sourceRefs": [{ "hash": "0x5000000000000000000000000000000000000000000000000000000000000b02" }], "methodRef": { "hash": "0x6000000000000000000000000000000000000000000000000000000000000b03" }, "uncertainty": { "kind": "qualitative", "note": "on-chain, replayable" }, "rationale": "Each of the three agents invoked the skill at least once (actor = recipient). Statistical unit here is the intended recipient." },
+      { "statementId": "s5", "metricRef": "geof:exposure/invocation-intensity/v1", "objectRef": "0x...b1", "value": 2.33, "numeratorCount": 7, "denominatorCount": 3, "coverage": { "withRecords": 3, "population": 3 }, "window": { "start": "2026-11-01", "end": "2026-11-14" }, "frameRef": { "hash": "0x4000000000000000000000000000000000000000000000000000000000000b01" }, "sourceRefs": [{ "hash": "0x5000000000000000000000000000000000000000000000000000000000000b02" }], "methodRef": { "hash": "0x6000000000000000000000000000000000000000000000000000000000000b03" }, "uncertainty": { "kind": "qualitative", "note": "on-chain, replayable" }, "rationale": "7 calls over 3 agents. Distinct from incidence (s4)." },
+      { "statementId": "s6", "metricRef": "geof:fidelity/relay-fidelity/v1", "objectRef": "0x...b1", "value": 1.0, "numeratorCount": 11, "denominatorCount": 11, "coverage": { "withRecords": 11, "population": 11 }, "window": { "start": "2026-11-01", "end": "2026-11-14" }, "frameRef": { "hash": "0x4000000000000000000000000000000000000000000000000000000000000b01" }, "sourceRefs": [{ "hash": "0x5000000000000000000000000000000000000000000000000000000000000b01" }, { "hash": "0x5000000000000000000000000000000000000000000000000000000000000b03" }], "methodRef": { "hash": "0x6000000000000000000000000000000000000000000000000000000000000b01" }, "referenceSet": [{ "hash": "0x5000000000000000000000000000000000000000000000000000000000000b03" }], "comparator": { "hash": "0x6000000000000000000000000000000000000000000000000000000000000b01" }, "proposition": "served descriptor == committed descriptor", "uncertainty": { "kind": "qualitative", "note": "deterministic hash comparison" }, "rationale": "All 11 descriptor fetches served bytes whose hash equals the committed descriptor hash." },
+      { "statementId": "s7", "metricRef": "geof:attainment/attainment-rate/v1", "objectRef": "0x...b1", "expectedChange": "invoked", "intentRef": { "hash": "0x3000000000000000000000000000000000000000000000000000000000000b01" }, "value": 1.0, "numeratorCount": 3, "denominatorCount": 3, "coverage": { "withRecords": 3, "population": 3 }, "window": { "start": "2026-11-01", "end": "2026-11-14" }, "frameRef": { "hash": "0x4000000000000000000000000000000000000000000000000000000000000b01" }, "sourceRefs": [{ "hash": "0x5000000000000000000000000000000000000000000000000000000000000b02" }], "methodRef": { "hash": "0x6000000000000000000000000000000000000000000000000000000000000b02" }, "uncertainty": { "kind": "qualitative", "note": "on-chain" }, "rationale": "Expected change 'invoked' recorded for 3 of 3 intended recipients." },
+      { "statementId": "s8", "metricRef": "geof:attainment/attainment-rate/v1", "objectRef": "0x...b1", "expectedChange": "acted", "intentRef": { "hash": "0x3000000000000000000000000000000000000000000000000000000000000b01" }, "value": 1.0, "numeratorCount": 3, "denominatorCount": 3, "coverage": { "withRecords": 3, "population": 3 }, "window": { "start": "2026-11-01", "end": "2026-11-14" }, "frameRef": { "hash": "0x4000000000000000000000000000000000000000000000000000000000000b01" }, "sourceRefs": [{ "hash": "0x5000000000000000000000000000000000000000000000000000000000000b02" }], "methodRef": { "hash": "0x6000000000000000000000000000000000000000000000000000000000000b02" }, "uncertainty": { "kind": "qualitative", "note": "on-chain" }, "rationale": "Three task tenders settled against the skill (TRANSACTED follow-ups, linkBasis deterministic by tenderId)." },
+      { "statementId": "s9", "metricRef": "geof:attribution/incremental-contribution/v1", "objectRef": "0x...b1", "intentRef": { "hash": "0x3000000000000000000000000000000000000000000000000000000000000b01" }, "value": "UNDETERMINABLE", "attributionBasis": "declared", "coverage": { "withRecords": 3, "population": 3 }, "window": { "start": "2026-11-01", "end": "2026-11-14" }, "frameRef": { "hash": "0x4000000000000000000000000000000000000000000000000000000000000b01" }, "sourceRefs": [{ "hash": "0x5000000000000000000000000000000000000000000000000000000000000b02" }], "methodRef": { "hash": "0x6000000000000000000000000000000000000000000000000000000000000b02" }, "uncertainty": "UNDETERMINABLE", "rationale": "The provider declares the gateway listing was the only channel offered to the three agents; no counterfactual estimate exists. Declared basis is a claim, not an estimate, so the value is UNDETERMINABLE rather than 1.0." },
+      { "statementId": "s10", "metricRef": "geof:economics/actual-revenue/v1", "objectRef": "0x...b1", "value": "3000000000000000", "coverage": { "withRecords": 3, "population": 3 }, "window": { "start": "2026-11-01", "end": "2026-11-14" }, "frameRef": { "hash": "0x4000000000000000000000000000000000000000000000000000000000000b01" }, "sourceRefs": [{ "hash": "0x5000000000000000000000000000000000000000000000000000000000000b02" }], "methodRef": { "hash": "0x6000000000000000000000000000000000000000000000000000000000000b03" }, "uncertainty": { "kind": "qualitative", "note": "ledger fact" }, "rationale": "Sum of the three settled tender rewards, in wei. A ledger fact; what share of it the dissemination created is s9's question, not this one's." }
+    ]
+  },
+
+  "reading": "Narrow public exposure (s1), full targeted reach (s2), full fidelity (s6), full attainment on both expected changes (s7, s8), attribution declared but not estimated (s9). Case A and case B are described by the same records; neither gets a score."
+}
