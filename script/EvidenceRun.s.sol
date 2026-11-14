@@ -130,77 +130,77 @@ contract EvidenceRun is Script {
         bytes32 profPanel2;
     }
 
-    AIds internal a;
+    AIds internal ca;
 
     function _caseA() internal {
         string memory base = "geof.examples/case-a-web-correction/";
 
         // company (B): objects, intent, publisher-side source
         vm.startBroadcast(pkB);
-        a.objClaim = reg.declareObject(_s(0), _h(0, 0), 0, string.concat(base, "objects/0"));
-        a.objPage = reg.declareObject(_s(1), _h(0, 1), 0, string.concat(base, "objects/1"));
-        a.intent = reg.declare(IGEOFRegistry.DeclarationKind.INTENT, _h(0, 2), 0, string.concat(base, "intent"));
-        a.srcLogs = reg.declare(IGEOFRegistry.DeclarationKind.SOURCE, _h(0, 6), 0, string.concat(base, "sources/2"));
+        ca.objClaim = reg.declareObject(_s(0), _h(0, 0), 0, string.concat(base, "objects/0"));
+        ca.objPage = reg.declareObject(_s(1), _h(0, 1), 0, string.concat(base, "objects/1"));
+        ca.intent = reg.declare(IGEOFRegistry.DeclarationKind.INTENT, _h(0, 2), 0, string.concat(base, "intent"));
+        ca.srcLogs = reg.declare(IGEOFRegistry.DeclarationKind.SOURCE, _h(0, 6), 0, string.concat(base, "sources/2"));
         vm.stopBroadcast();
 
         // panel (A): frame, sources, methods, process
         vm.startBroadcast(pkA);
-        a.frame = reg.declare(IGEOFRegistry.DeclarationKind.FRAME, _h(0, 3), 0, string.concat(base, "frame"));
-        a.srcPanel = reg.declare(IGEOFRegistry.DeclarationKind.SOURCE, _h(0, 4), 0, string.concat(base, "sources/0"));
-        a.srcNotice = reg.declare(IGEOFRegistry.DeclarationKind.SOURCE, _h(0, 5), 0, string.concat(base, "sources/1"));
-        a.m1 = reg.declare(IGEOFRegistry.DeclarationKind.METHOD, _h(0, 7), 0, string.concat(base, "methods/0"));
-        a.m2 = reg.declare(IGEOFRegistry.DeclarationKind.METHOD, _h(0, 8), 0, string.concat(base, "methods/1"));
-        a.m3 = reg.declare(IGEOFRegistry.DeclarationKind.METHOD, _h(0, 9), 0, string.concat(base, "methods/2"));
-        a.m4 = reg.declare(IGEOFRegistry.DeclarationKind.METHOD, _h(0, 10), 0, string.concat(base, "methods/3"));
-        a.pid = reg.openProcess(
-            a.frame, _arr(a.objClaim, a.objPage), _arr(a.intent), _arr(a.srcPanel, a.srcNotice, a.srcLogs), _arr(a.m1, a.m2, a.m3, a.m4)
+        ca.frame = reg.declare(IGEOFRegistry.DeclarationKind.FRAME, _h(0, 3), 0, string.concat(base, "frame"));
+        ca.srcPanel = reg.declare(IGEOFRegistry.DeclarationKind.SOURCE, _h(0, 4), 0, string.concat(base, "sources/0"));
+        ca.srcNotice = reg.declare(IGEOFRegistry.DeclarationKind.SOURCE, _h(0, 5), 0, string.concat(base, "sources/1"));
+        ca.m1 = reg.declare(IGEOFRegistry.DeclarationKind.METHOD, _h(0, 7), 0, string.concat(base, "methods/0"));
+        ca.m2 = reg.declare(IGEOFRegistry.DeclarationKind.METHOD, _h(0, 8), 0, string.concat(base, "methods/1"));
+        ca.m3 = reg.declare(IGEOFRegistry.DeclarationKind.METHOD, _h(0, 9), 0, string.concat(base, "methods/2"));
+        ca.m4 = reg.declare(IGEOFRegistry.DeclarationKind.METHOD, _h(0, 10), 0, string.concat(base, "methods/3"));
+        ca.pid = reg.openProcess(
+            ca.frame, _arr(ca.objClaim, ca.objPage), _arr(ca.intent), _arr(ca.srcPanel, ca.srcNotice, ca.srcLogs), _arr(ca.m1, ca.m2, ca.m3, ca.m4)
         );
         // four weekly batches of answer instances (360 each = 1440)
         for (uint256 w = 1; w <= 4; w++) {
-            reg.commitObservations(a.pid, keccak256(abi.encode("A:events:week", w)), 360, IGEOFRegistry.ObservationKind.EVENT);
+            reg.commitObservations(ca.pid, keccak256(abi.encode("A:events:week", w)), 360, IGEOFRegistry.ObservationKind.EVENT);
         }
         vm.stopBroadcast();
 
         // company (B): monthly aggregate from its logs
         vm.startBroadcast(pkB);
-        reg.commitObservations(a.pid, keccak256("A:aggregate:oct-logs"), 1, IGEOFRegistry.ObservationKind.AGGREGATE);
+        reg.commitObservations(ca.pid, keccak256("A:aggregate:oct-logs"), 1, IGEOFRegistry.ObservationKind.AGGREGATE);
         vm.stopBroadcast();
 
         // panel (A): freeze v1, publish profile
         vm.startBroadcast(pkA);
-        reg.closeProcess(a.pid, keccak256("A:evidence-root:v1"), uint48(block.timestamp + 14 days));
-        a.profPanel = reg.publishProfile(a.pid, 1, _h(0, 11), 0, string.concat(base, "profile"));
+        reg.closeProcess(ca.pid, keccak256("A:evidence-root:v1"), uint48(block.timestamp + 14 days));
+        ca.profPanel = reg.publishProfile(ca.pid, 1, _h(0, 11), 0, string.concat(base, "profile"));
         vm.stopBroadcast();
 
         // auditor (C): second profile on the same frozen version
         vm.startBroadcast(pkC);
-        a.profAuditor = reg.publishProfile(a.pid, 1, keccak256("A:profile:auditor:v1"), 0, string.concat(base, "profile-auditor"));
+        ca.profAuditor = reg.publishProfile(ca.pid, 1, keccak256("A:profile:auditor:v1"), 0, string.concat(base, "profile-auditor"));
         vm.stopBroadcast();
 
         // panel (A): addendum for late recipient signal; company (B) commits it; panel freezes v2 and supersedes
         vm.startBroadcast(pkA);
-        reg.openAddendum(a.pid);
+        reg.openAddendum(ca.pid);
         vm.stopBroadcast();
         vm.startBroadcast(pkB);
-        reg.commitObservations(a.pid, keccak256("A:followup:survey"), 40, IGEOFRegistry.ObservationKind.FOLLOWUP);
+        reg.commitObservations(ca.pid, keccak256("A:followup:survey"), 40, IGEOFRegistry.ObservationKind.FOLLOWUP);
         vm.stopBroadcast();
         vm.startBroadcast(pkA);
-        reg.closeProcess(a.pid, keccak256("A:evidence-root:v2"), uint48(block.timestamp + 14 days));
-        a.profPanel2 = reg.publishProfile(a.pid, 2, keccak256("A:profile:panel:v2"), a.profPanel, string.concat(base, "profile-v2"));
+        reg.closeProcess(ca.pid, keccak256("A:evidence-root:v2"), uint48(block.timestamp + 14 days));
+        ca.profPanel2 = reg.publishProfile(ca.pid, 2, keccak256("A:profile:panel:v2"), ca.profPanel, string.concat(base, "profile-v2"));
         vm.stopBroadcast();
 
         string memory o = "caseA";
-        vm.serializeBytes32(o, "processId", a.pid);
-        vm.serializeBytes32(o, "frameId", a.frame);
-        vm.serializeBytes32(o, "objectClaimId", a.objClaim);
-        vm.serializeBytes32(o, "objectPageId", a.objPage);
-        vm.serializeBytes32(o, "intentId", a.intent);
-        vm.serializeBytes32(o, "profilePanelV1", a.profPanel);
-        vm.serializeBytes32(o, "profileAuditorV1", a.profAuditor);
-        string memory j = vm.serializeBytes32(o, "profilePanelV2", a.profPanel2);
+        vm.serializeBytes32(o, "processId", ca.pid);
+        vm.serializeBytes32(o, "frameId", ca.frame);
+        vm.serializeBytes32(o, "objectClaimId", ca.objClaim);
+        vm.serializeBytes32(o, "objectPageId", ca.objPage);
+        vm.serializeBytes32(o, "intentId", ca.intent);
+        vm.serializeBytes32(o, "profilePanelV1", ca.profPanel);
+        vm.serializeBytes32(o, "profileAuditorV1", ca.profAuditor);
+        string memory j = vm.serializeBytes32(o, "profilePanelV2", ca.profPanel2);
         vm.serializeString(out, "caseA", j);
         console2.log("case A process:");
-        console2.logBytes32(a.pid);
+        console2.logBytes32(ca.pid);
     }
 
     // ---------------------------------------------------------------------
@@ -222,52 +222,52 @@ contract EvidenceRun is Script {
         bytes32 profIndexer;
     }
 
-    BIds internal b;
+    BIds internal cb;
 
     function _caseB() internal {
         string memory base = "geof.examples/case-b-agentic-skill/";
 
         // provider (A): everything up to the first commitments
         vm.startBroadcast(pkA);
-        b.objSkill = reg.declareObject(_s(2), _h(1, 0), 0, string.concat(base, "objects/0"));
-        b.intent = reg.declare(IGEOFRegistry.DeclarationKind.INTENT, _h(1, 1), 0, string.concat(base, "intent"));
-        b.frame = reg.declare(IGEOFRegistry.DeclarationKind.FRAME, _h(1, 2), 0, string.concat(base, "frame"));
-        b.srcGateway = reg.declare(IGEOFRegistry.DeclarationKind.SOURCE, _h(1, 3), 0, string.concat(base, "sources/0"));
-        b.srcChain = reg.declare(IGEOFRegistry.DeclarationKind.SOURCE, _h(1, 4), 0, string.concat(base, "sources/1"));
-        b.srcDescriptor = reg.declare(IGEOFRegistry.DeclarationKind.SOURCE, _h(1, 5), 0, string.concat(base, "sources/2"));
-        b.m1 = reg.declare(IGEOFRegistry.DeclarationKind.METHOD, _h(1, 6), 0, string.concat(base, "methods/0"));
-        b.m2 = reg.declare(IGEOFRegistry.DeclarationKind.METHOD, _h(1, 7), 0, string.concat(base, "methods/1"));
-        b.m3 = reg.declare(IGEOFRegistry.DeclarationKind.METHOD, _h(1, 8), 0, string.concat(base, "methods/2"));
-        b.pid = reg.openProcess(
-            b.frame, _arr(b.objSkill), _arr(b.intent), _arr(b.srcGateway, b.srcChain, b.srcDescriptor), _arr(b.m1, b.m2, b.m3)
+        cb.objSkill = reg.declareObject(_s(2), _h(1, 0), 0, string.concat(base, "objects/0"));
+        cb.intent = reg.declare(IGEOFRegistry.DeclarationKind.INTENT, _h(1, 1), 0, string.concat(base, "intent"));
+        cb.frame = reg.declare(IGEOFRegistry.DeclarationKind.FRAME, _h(1, 2), 0, string.concat(base, "frame"));
+        cb.srcGateway = reg.declare(IGEOFRegistry.DeclarationKind.SOURCE, _h(1, 3), 0, string.concat(base, "sources/0"));
+        cb.srcChain = reg.declare(IGEOFRegistry.DeclarationKind.SOURCE, _h(1, 4), 0, string.concat(base, "sources/1"));
+        cb.srcDescriptor = reg.declare(IGEOFRegistry.DeclarationKind.SOURCE, _h(1, 5), 0, string.concat(base, "sources/2"));
+        cb.m1 = reg.declare(IGEOFRegistry.DeclarationKind.METHOD, _h(1, 6), 0, string.concat(base, "methods/0"));
+        cb.m2 = reg.declare(IGEOFRegistry.DeclarationKind.METHOD, _h(1, 7), 0, string.concat(base, "methods/1"));
+        cb.m3 = reg.declare(IGEOFRegistry.DeclarationKind.METHOD, _h(1, 8), 0, string.concat(base, "methods/2"));
+        cb.pid = reg.openProcess(
+            cb.frame, _arr(cb.objSkill), _arr(cb.intent), _arr(cb.srcGateway, cb.srcChain, cb.srcDescriptor), _arr(cb.m1, cb.m2, cb.m3)
         );
-        reg.commitObservations(b.pid, keccak256("B:events:discovery"), 11, IGEOFRegistry.ObservationKind.EVENT);
-        reg.commitObservations(b.pid, keccak256("B:aggregate:gateway"), 1, IGEOFRegistry.ObservationKind.AGGREGATE);
+        reg.commitObservations(cb.pid, keccak256("B:events:discovery"), 11, IGEOFRegistry.ObservationKind.EVENT);
+        reg.commitObservations(cb.pid, keccak256("B:aggregate:gateway"), 1, IGEOFRegistry.ObservationKind.AGGREGATE);
         vm.stopBroadcast();
 
         // indexer (B): the three settlements as follow-ups
         vm.startBroadcast(pkB);
-        reg.commitObservations(b.pid, keccak256("B:followups:settlements"), 3, IGEOFRegistry.ObservationKind.FOLLOWUP);
+        reg.commitObservations(cb.pid, keccak256("B:followups:settlements"), 3, IGEOFRegistry.ObservationKind.FOLLOWUP);
         vm.stopBroadcast();
 
         // provider (A): freeze and publish; indexer (B): second profile
         vm.startBroadcast(pkA);
-        reg.closeProcess(b.pid, keccak256("B:evidence-root:v1"), uint48(block.timestamp + 7 days));
-        b.profProvider = reg.publishProfile(b.pid, 1, _h(1, 9), 0, string.concat(base, "profile"));
+        reg.closeProcess(cb.pid, keccak256("B:evidence-root:v1"), uint48(block.timestamp + 7 days));
+        cb.profProvider = reg.publishProfile(cb.pid, 1, _h(1, 9), 0, string.concat(base, "profile"));
         vm.stopBroadcast();
         vm.startBroadcast(pkB);
-        b.profIndexer = reg.publishProfile(b.pid, 1, keccak256("B:profile:indexer:v1"), 0, string.concat(base, "profile-indexer"));
+        cb.profIndexer = reg.publishProfile(cb.pid, 1, keccak256("B:profile:indexer:v1"), 0, string.concat(base, "profile-indexer"));
         vm.stopBroadcast();
 
         string memory o = "caseB";
-        vm.serializeBytes32(o, "processId", b.pid);
-        vm.serializeBytes32(o, "frameId", b.frame);
-        vm.serializeBytes32(o, "objectSkillId", b.objSkill);
-        vm.serializeBytes32(o, "intentId", b.intent);
-        vm.serializeBytes32(o, "profileProviderV1", b.profProvider);
-        string memory j = vm.serializeBytes32(o, "profileIndexerV1", b.profIndexer);
+        vm.serializeBytes32(o, "processId", cb.pid);
+        vm.serializeBytes32(o, "frameId", cb.frame);
+        vm.serializeBytes32(o, "objectSkillId", cb.objSkill);
+        vm.serializeBytes32(o, "intentId", cb.intent);
+        vm.serializeBytes32(o, "profileProviderV1", cb.profProvider);
+        string memory j = vm.serializeBytes32(o, "profileIndexerV1", cb.profIndexer);
         vm.serializeString(out, "caseB", j);
         console2.log("case B process:");
-        console2.logBytes32(b.pid);
+        console2.logBytes32(cb.pid);
     }
 }

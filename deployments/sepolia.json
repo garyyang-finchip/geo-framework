@@ -1,0 +1,492 @@
+{
+  "network": "sepolia",
+  "chainId": 11155111,
+  "registry": "0xe725180476760B4012D8Eb9aD1De3337B5e40478",
+  "deployedAt": {
+    "tx": "0xe51a9684655ef52ccd82ed2c7bf8eadf0eb0d31f70c64a714892f3d06423d0b0",
+    "block": 12134766
+  },
+  "accounts": {
+    "A": {
+      "address": "0x87fd31695C1cef8e247967c174E4c6275Eb55FD5",
+      "roles": [
+        "deployer",
+        "panel observer (case A)",
+        "skill provider (case B)"
+      ]
+    },
+    "B": {
+      "address": "0xa036DA636C23b9f7e25d3Fc9E0D24F0467CdE854",
+      "roles": [
+        "company (case A)",
+        "independent indexer (case B)"
+      ]
+    },
+    "C": {
+      "address": "0x1A7f5E50E81e14BD4254eA33aA58BF1aBaD283C9",
+      "roles": [
+        "auditor, second publisher (case A)"
+      ]
+    }
+  },
+  "caseA": {
+    "frameId": "0xd9aa6b064154635f95b55a1ecc5ec72f5afe06d40371121d2994441bfc50a5e0",
+    "intentId": "0x5c1f35eaedcac0a49d8c8b8305cfb6edc5eb9f446b367b63d9c736ccd9a64fe8",
+    "objectClaimId": "0x1d5d2d87334da4dd84527513e8f7d05939622572db9a15f933d3a2e16f0eebd8",
+    "objectPageId": "0x7004bfe019b90a23125f8729d1e12f902a7cc0bfb85a15da1598d144a9014e3f",
+    "processId": "0xc648a9d15bfab71c7ce298a5e4f345f8142d07f5a1098f5ab5a36672a1835ae1",
+    "profileAuditorV1": "0x752557c4580835338923a1884df5a5ed13ce2ceb2b699a2ec4ac815f3a9d897a",
+    "profilePanelV1": "0x600fd9178e1b6b5934ed784bbdf1de070f98728808a80f357f416eb4cf458bb4",
+    "profilePanelV2": "0xf4aba376199a68135ec00cee2c3b1aff2335019a8d9d3307495e0fca18d27583"
+  },
+  "caseB": {
+    "frameId": "0xc67e01be6f2b827ecf721fef43ca46ef2cb43bed9118959113fd06433adc6122",
+    "intentId": "0x4616b8a570f9dd57ac719854bffe07891a3bf48ea26c8c0d3799489876ef9c4b",
+    "objectSkillId": "0xf0208dd5fab77bc4a2e546eef8ec42af98ba2c2021b9b6af41ee1e743dbdef2a",
+    "processId": "0x80277a1a8b0a74daa3d0682fd2f4744993aaddcca2435a187c387491fe330af4",
+    "profileIndexerV1": "0x4d8bd78666a33a6fc87f7a1796790135ed8cd548f26ef48291a9b382d356131f",
+    "profileProviderV1": "0xdc7a29a11b62e81d99b39d6796384a9ecc0ecdfca022a17ba2cfe465faa63bfe"
+  },
+  "stateAtBlock": {
+    "block": 12134808,
+    "timestamp": 1794679956,
+    "processA": {
+      "currentVersion": 2,
+      "open": false,
+      "v1": {
+        "commitmentCount": 5,
+        "frozen": true,
+        "evidenceRoot": "0x8bf6713ecc4b0d17e5cfe7347eae32f60059eab433bb2b73163eec295804eb24",
+        "observationCutoff": 1795889040
+      },
+      "v2": {
+        "commitmentCount": 1,
+        "frozen": true,
+        "evidenceRoot": "0xcb770e1beb32184e042fdc467f2d79e0a02ce67b985ed2c35c72ebbdc419fc39",
+        "observationCutoff": 1795889040
+      }
+    },
+    "processB": {
+      "currentVersion": 1,
+      "open": false,
+      "v1": {
+        "commitmentCount": 3,
+        "frozen": true,
+        "evidenceRoot": "0x808c3c30479256e561dc28b3176f5253c327aeb818952a29674e19eb390a8d9a",
+        "observationCutoff": 1795284240
+      }
+    },
+    "profilePanelV2": {
+      "version": 2,
+      "supersedes": "0x600fd9178e1b6b5934ed784bbdf1de070f98728808a80f357f416eb4cf458bb4",
+      "publishedAt": 1794679764
+    },
+    "supportsInterface": {
+      "erc6372": true
+    },
+    "clockMode": "mode=timestamp"
+  },
+  "transactions": [
+    {
+      "index": 0,
+      "phase": "deploy-and-fund",
+      "sender": "A",
+      "function": "deploy",
+      "hash": "0xe51a9684655ef52ccd82ed2c7bf8eadf0eb0d31f70c64a714892f3d06423d0b0",
+      "block": 12134766,
+      "gasUsed": 12310042
+    },
+    {
+      "index": 1,
+      "phase": "deploy-and-fund",
+      "sender": "A",
+      "function": "transfer",
+      "hash": "0xe8784723795293c66321ba868cb0721a86acfe0d267c95bd13e72c754696a629",
+      "block": 12134767,
+      "gasUsed": 204600
+    },
+    {
+      "index": 2,
+      "phase": "deploy-and-fund",
+      "sender": "A",
+      "function": "transfer",
+      "hash": "0xae17ab9005307eeb42e3e5a95b04279c74da63cf39196e7f6663f8a0f87838de",
+      "block": 12134768,
+      "gasUsed": 204600
+    },
+    {
+      "index": 3,
+      "phase": "case-a",
+      "sender": "B",
+      "function": "declareObject(bytes32,bytes32,bytes32,string)",
+      "hash": "0xefd5a962834d0e844999a86c97925cd676a1b6b6c2187f40ae452bef50e7457d",
+      "block": 12134769,
+      "gasUsed": 798025
+    },
+    {
+      "index": 4,
+      "phase": "case-a",
+      "sender": "B",
+      "function": "declareObject(bytes32,bytes32,bytes32,string)",
+      "hash": "0xc5a02f9b9d187d254c19b6c8a17aa9983ac4dee5f472074ca5c8193083a7e9b6",
+      "block": 12134770,
+      "gasUsed": 798025
+    },
+    {
+      "index": 5,
+      "phase": "case-a",
+      "sender": "B",
+      "function": "declare(uint8,bytes32,bytes32,string)",
+      "hash": "0x848f42e411235fa27628dd41ff66d19583e91f771ee8639f382806c0f61ed2cd",
+      "block": 12134771,
+      "gasUsed": 685961
+    },
+    {
+      "index": 6,
+      "phase": "case-a",
+      "sender": "B",
+      "function": "declare(uint8,bytes32,bytes32,string)",
+      "hash": "0x7ad707fef5af263afe8accf9a182e94d9111ee7047e5110dff46de7a37675f50",
+      "block": 12134772,
+      "gasUsed": 686009
+    },
+    {
+      "index": 7,
+      "phase": "case-a",
+      "sender": "A",
+      "function": "declare(uint8,bytes32,bytes32,string)",
+      "hash": "0xcf24e2030da3534baaa55c36535e456fa195cf9a8a3177ab07fe4d01ddda0702",
+      "block": 12134773,
+      "gasUsed": 685961
+    },
+    {
+      "index": 8,
+      "phase": "case-a",
+      "sender": "A",
+      "function": "declare(uint8,bytes32,bytes32,string)",
+      "hash": "0x97e6f24dbbbee1405729d7f3e39840cc983262cf77f3a7c0147dacbe84348d42",
+      "block": 12134774,
+      "gasUsed": 686009
+    },
+    {
+      "index": 9,
+      "phase": "case-a",
+      "sender": "A",
+      "function": "declare(uint8,bytes32,bytes32,string)",
+      "hash": "0x49aa6ee80407a00fe0057d8a49149ddfa77cea79bb85bab3b2fdb1eeb8d578b1",
+      "block": 12134775,
+      "gasUsed": 686009
+    },
+    {
+      "index": 10,
+      "phase": "case-a",
+      "sender": "A",
+      "function": "declare(uint8,bytes32,bytes32,string)",
+      "hash": "0x32412cb1995e904126cfb5d1e3f852290ac197c8b633ba2a62af87a5b386b3a1",
+      "block": 12134776,
+      "gasUsed": 685997
+    },
+    {
+      "index": 11,
+      "phase": "case-a",
+      "sender": "A",
+      "function": "declare(uint8,bytes32,bytes32,string)",
+      "hash": "0x773afb9d7435aea0f9955a9ff34f9356d7c7a0065864b8dcc4f4e43d25f0d670",
+      "block": 12134777,
+      "gasUsed": 686009
+    },
+    {
+      "index": 12,
+      "phase": "case-a",
+      "sender": "A",
+      "function": "declare(uint8,bytes32,bytes32,string)",
+      "hash": "0x1305dd0f4869882b99c8986078efc4dc484f5c72d5c795286e0f82b6dcd240d7",
+      "block": 12134778,
+      "gasUsed": 686009
+    },
+    {
+      "index": 13,
+      "phase": "case-a",
+      "sender": "A",
+      "function": "declare(uint8,bytes32,bytes32,string)",
+      "hash": "0x6ca4f2c2230760683cb8474e7c0724d2b26d4405a7da8bfce8ecd4ff11879e19",
+      "block": 12134779,
+      "gasUsed": 686009
+    },
+    {
+      "index": 14,
+      "phase": "case-a",
+      "sender": "A",
+      "function": "openProcess(bytes32,bytes32[],bytes32[],bytes32[],bytes32[])",
+      "hash": "0x6c8c853d1aa23ba8ecaf0e82d0dcbfe754e04f926c67ba265ba1ea6b208f95c0",
+      "block": 12134780,
+      "gasUsed": 2064011
+    },
+    {
+      "index": 15,
+      "phase": "case-a",
+      "sender": "A",
+      "function": "commitObservations(bytes32,bytes32,uint64,uint8)",
+      "hash": "0x33a188c95eecf67706183eea75cd47743808fa5672fbce39d32926dea094bdd0",
+      "block": 12134781,
+      "gasUsed": 132818
+    },
+    {
+      "index": 16,
+      "phase": "case-a",
+      "sender": "A",
+      "function": "commitObservations(bytes32,bytes32,uint64,uint8)",
+      "hash": "0xf59c996a0c7c71992d5d5e11c22ccefb7d33d3257605d86139701b6b13389df8",
+      "block": 12134782,
+      "gasUsed": 34886
+    },
+    {
+      "index": 17,
+      "phase": "case-a",
+      "sender": "A",
+      "function": "commitObservations(bytes32,bytes32,uint64,uint8)",
+      "hash": "0xa92a809f1475e49e8f88ebbc660fe83daa75815a471a5a588f16b30d865e9237",
+      "block": 12134783,
+      "gasUsed": 34898
+    },
+    {
+      "index": 18,
+      "phase": "case-a",
+      "sender": "A",
+      "function": "commitObservations(bytes32,bytes32,uint64,uint8)",
+      "hash": "0xdfda9f24892386727b45a5d9062ae5c755a23326b715356af8fc94634d96c481",
+      "block": 12134784,
+      "gasUsed": 34898
+    },
+    {
+      "index": 19,
+      "phase": "case-a",
+      "sender": "B",
+      "function": "commitObservations(bytes32,bytes32,uint64,uint8)",
+      "hash": "0xefaca057cdcdcc31fdb8617ab014ec7167700763ebe5d706e18740aae59a190c",
+      "block": 12134785,
+      "gasUsed": 34898
+    },
+    {
+      "index": 20,
+      "phase": "case-a",
+      "sender": "A",
+      "function": "closeProcess(bytes32,bytes32,uint48)",
+      "hash": "0x7d14ca125dbe796bcc01b089b14d4f36c40e46d5f7cefbd3b5b122b791ffb812",
+      "block": 12134786,
+      "gasUsed": 145717
+    },
+    {
+      "index": 21,
+      "phase": "case-a",
+      "sender": "A",
+      "function": "publishProfile(bytes32,uint32,bytes32,bytes32,string)",
+      "hash": "0x3bde5ee14b643f82026dba8be32adb104d05bc2794cc3f346a0ec7fd8d35d754",
+      "block": 12134787,
+      "gasUsed": 801175
+    },
+    {
+      "index": 22,
+      "phase": "case-a",
+      "sender": "C",
+      "function": "publishProfile(bytes32,uint32,bytes32,bytes32,string)",
+      "hash": "0x1004fa3d6b23fcd8db0bd81f29ac710ca68e4d964d72c5f7105ad3fee3ab2cf0",
+      "block": 12134788,
+      "gasUsed": 801271
+    },
+    {
+      "index": 23,
+      "phase": "case-a",
+      "sender": "A",
+      "function": "openAddendum(bytes32)",
+      "hash": "0x9c9fa6c87b21fd05ce746a22cf0a542ad7d7a202adf11b3afe7e36ec55936da0",
+      "block": 12134789,
+      "gasUsed": 34545
+    },
+    {
+      "index": 24,
+      "phase": "case-a",
+      "sender": "B",
+      "function": "commitObservations(bytes32,bytes32,uint64,uint8)",
+      "hash": "0x534804e20b6c52b8fdce3ab5995369438a35330b785be54fefa8e7c2c35899ad",
+      "block": 12134790,
+      "gasUsed": 132818
+    },
+    {
+      "index": 25,
+      "phase": "case-a",
+      "sender": "A",
+      "function": "closeProcess(bytes32,bytes32,uint48)",
+      "hash": "0x0194185d72a0c1a652a0b6c8d6ac5df708eca1353381e2a6573681a5ce6b91d4",
+      "block": 12134791,
+      "gasUsed": 145729
+    },
+    {
+      "index": 26,
+      "phase": "case-a",
+      "sender": "A",
+      "function": "publishProfile(bytes32,uint32,bytes32,bytes32,string)",
+      "hash": "0xace04be1b5c4e019a6d88e0f874890e57e19b1a114e7cdcdbf97e249c2b04856",
+      "block": 12134792,
+      "gasUsed": 916025
+    },
+    {
+      "index": 27,
+      "phase": "case-b",
+      "sender": "A",
+      "function": "declareObject(bytes32,bytes32,bytes32,string)",
+      "hash": "0x6d1c72eb755b3a33db215ce69bbf1bcbe66fb61643ac70610c4bf6a439c57abf",
+      "block": 12134793,
+      "gasUsed": 798013
+    },
+    {
+      "index": 28,
+      "phase": "case-b",
+      "sender": "A",
+      "function": "declare(uint8,bytes32,bytes32,string)",
+      "hash": "0x1bb980732a5767023c7fa3d98a5253bf802bb6756f644da7f70482126ee942bb",
+      "block": 12134794,
+      "gasUsed": 685961
+    },
+    {
+      "index": 29,
+      "phase": "case-b",
+      "sender": "A",
+      "function": "declare(uint8,bytes32,bytes32,string)",
+      "hash": "0x230c9c239757e19e436f513bc0d6aa63d378dacc7196a54f00782a26a17c5b6d",
+      "block": 12134795,
+      "gasUsed": 685949
+    },
+    {
+      "index": 30,
+      "phase": "case-b",
+      "sender": "A",
+      "function": "declare(uint8,bytes32,bytes32,string)",
+      "hash": "0xdc98801370284ca6e9086b416b9b23f7cac75ae95a28cd23251b076e80d3a5ac",
+      "block": 12134796,
+      "gasUsed": 685985
+    },
+    {
+      "index": 31,
+      "phase": "case-b",
+      "sender": "A",
+      "function": "declare(uint8,bytes32,bytes32,string)",
+      "hash": "0xcc2e40ba6f01348a2987773ec66abd8ea175f9ab2b3682accfd2f6d033c533e6",
+      "block": 12134797,
+      "gasUsed": 685997
+    },
+    {
+      "index": 32,
+      "phase": "case-b",
+      "sender": "A",
+      "function": "declare(uint8,bytes32,bytes32,string)",
+      "hash": "0x11344da0f5609d3b1bcd9a6e1c887368cfbbc8432720797db133071982413b78",
+      "block": 12134798,
+      "gasUsed": 685997
+    },
+    {
+      "index": 33,
+      "phase": "case-b",
+      "sender": "A",
+      "function": "declare(uint8,bytes32,bytes32,string)",
+      "hash": "0x5a7dbf0bb23baad28d9e94ee9eae4b53e977d50c77a0a4b3b97fb717a1c85026",
+      "block": 12134799,
+      "gasUsed": 685997
+    },
+    {
+      "index": 34,
+      "phase": "case-b",
+      "sender": "A",
+      "function": "declare(uint8,bytes32,bytes32,string)",
+      "hash": "0xc56f076483f20631461ce42e894259e3c60f15ce06cf7200dd485f89d036383c",
+      "block": 12134800,
+      "gasUsed": 685997
+    },
+    {
+      "index": 35,
+      "phase": "case-b",
+      "sender": "A",
+      "function": "declare(uint8,bytes32,bytes32,string)",
+      "hash": "0xaf2cf0a3652cf61b925cee566aa8508b5f73b9a021949893365c74bbcdeb79a4",
+      "block": 12134801,
+      "gasUsed": 685997
+    },
+    {
+      "index": 36,
+      "phase": "case-b",
+      "sender": "A",
+      "function": "openProcess(bytes32,bytes32[],bytes32[],bytes32[],bytes32[])",
+      "hash": "0x685b3b454c054d24d59da5a60197b196140dd7b68f4b5fe8af0c12a32b905acb",
+      "block": 12134802,
+      "gasUsed": 1735325
+    },
+    {
+      "index": 37,
+      "phase": "case-b",
+      "sender": "A",
+      "function": "commitObservations(bytes32,bytes32,uint64,uint8)",
+      "hash": "0x4b71aca456d8807e509200f079d278e6ca5d4d0a38e71fa4ed5fed08b62ee244",
+      "block": 12134803,
+      "gasUsed": 132806
+    },
+    {
+      "index": 38,
+      "phase": "case-b",
+      "sender": "A",
+      "function": "commitObservations(bytes32,bytes32,uint64,uint8)",
+      "hash": "0xe39054ab525036113a49ba2a81c318b72b17d00690c61b9acc171bf2ce8f8bfb",
+      "block": 12134804,
+      "gasUsed": 34898
+    },
+    {
+      "index": 39,
+      "phase": "case-b",
+      "sender": "B",
+      "function": "commitObservations(bytes32,bytes32,uint64,uint8)",
+      "hash": "0xd1ac9cfd081787aa5b01d9c3dddd8f02906bd8efc7aaa1e0f16a27ce764db91e",
+      "block": 12134805,
+      "gasUsed": 34874
+    },
+    {
+      "index": 40,
+      "phase": "case-b",
+      "sender": "A",
+      "function": "closeProcess(bytes32,bytes32,uint48)",
+      "hash": "0x97cf2091a44e91eed0581afef15b90e3c60e7d5c707a6e6cb04af52d25d42360",
+      "block": 12134806,
+      "gasUsed": 145729
+    },
+    {
+      "index": 41,
+      "phase": "case-b",
+      "sender": "A",
+      "function": "publishProfile(bytes32,uint32,bytes32,bytes32,string)",
+      "hash": "0xb252700bfac3d2d17dcbdb177428a8c4a7b9e1909332cf2b3688819a7cf9fa54",
+      "block": 12134807,
+      "gasUsed": 801163
+    },
+    {
+      "index": 42,
+      "phase": "case-b",
+      "sender": "B",
+      "function": "publishProfile(bytes32,uint32,bytes32,bytes32,string)",
+      "hash": "0x83de84ddb340f40da61b17afe8988923bd4bd54af972fdb72d4fc1175bb6d5cc",
+      "block": 12134808,
+      "gasUsed": 801259
+    }
+  ],
+  "totals": {
+    "transactions": 43,
+    "blocks": [
+      12134766,
+      12134808
+    ],
+    "gasUsed": 35774901,
+    "paidEth": "0.000894373630384415"
+  },
+  "notes": [
+    "Run from an EC2 host with forge script --broadcast --skip-simulation (gas limits from live estimation).",
+    "Sepolia gas used was 1.0x-9.7x the local anvil figures per transaction; a pre-signed batch with 4x local limits would have failed on the deployment.",
+    "Record contents for every declaration are in assets/erc-9999/examples/ and their hashes in assets/erc-9999/vectors/vectors.json; observation roots are keccak256 labels of the batches (no instance records are published for the synthetic cases)."
+  ]
+}

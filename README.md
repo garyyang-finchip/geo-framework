@@ -1,6 +1,6 @@
 # geo-framework — Generative Engine Optimization Framework (GEOF)
 
-**Status: v0.1.0 (2026-11-15). Architecture frozen. ERC draft, reference registry with 50 Foundry tests, JSON Schemas, validator, vectors, two worked cases, ERCs filing package. Test-network evidence run pending funding.**
+**Status: v0.2.0 (2026-11-15). Architecture frozen. ERC draft filed as ethereum/ERCs PR #2176; reference registry with 50 Foundry tests, JSON Schemas, validator, vectors, two worked cases; Sepolia evidence run complete (43 transactions, both cases).**
 
 GEOF is a descriptive framework for how generative engines — answer engines, AI search surfaces, agent runtimes with discovery layers — represent an object, how that representation is measured, and how independent parties exchange and verify the measurements. It lets independent parties declare, for the same object or dissemination process, what they observed; and, when a dissemination intent has been declared, how much of it was attained and how much can be attributed to the dissemination.
 
@@ -66,7 +66,7 @@ Solidity 0.8.28, EVM `cancun`, optimizer 200 runs, no via-IR.
 
 | Network | GEOFRegistry | Record |
 | --- | --- | --- |
-| Sepolia | pending | `deployments/sepolia.json` |
+| Sepolia | [`0xe725180476760B4012D8Eb9aD1De3337B5e40478`](https://sepolia.etherscan.io/address/0xe725180476760B4012D8Eb9aD1De3337B5e40478) — 43 txs, blocks 12134766–12134808, both cases | `deployments/sepolia.json`, `docs/sepolia-evidence.md` |
 
 ## Relation to adjacent proposals
 
