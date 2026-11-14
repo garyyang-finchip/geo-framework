@@ -29,35 +29,72 @@
     "recordRef": {
       "type": "object",
       "description": "Reference to another GEOF record by content hash and optional URI",
-      "required": ["hash"],
+      "required": [
+        "hash"
+      ],
       "properties": {
-        "hash": { "$ref": "#/$defs/hash32" },
-        "uri": { "$ref": "#/$defs/uri" }
+        "hash": {
+          "$ref": "#/$defs/hash32"
+        },
+        "uri": {
+          "$ref": "#/$defs/uri"
+        }
       },
       "additionalProperties": false
     },
     "state": {
       "type": "string",
-      "enum": ["ABSENT", "UNOBSERVED", "NOT_APPLICABLE", "UNDETERMINABLE"],
+      "enum": [
+        "ABSENT",
+        "UNOBSERVED",
+        "NOT_APPLICABLE",
+        "UNDETERMINABLE"
+      ],
       "description": "ABSENT: checked, explicitly none. UNOBSERVED: no material to check. NOT_APPLICABLE: the field has no meaning here. UNDETERMINABLE: material available but the declared method reached no determination."
     },
     "valueOrState": {
-      "oneOf": [
-        { "type": "number" },
-        { "type": "string" },
-        { "type": "boolean" },
-        { "type": "object" },
-        { "$ref": "#/$defs/state" }
-      ]
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "object"
+        },
+        {
+          "$ref": "#/$defs/state"
+        }
+      ],
+      "description": "A value, or one of the five states. A string value that equals a state name is that state."
     },
     "scopeRecord": {
       "type": "object",
       "description": "Scope of one Frame dimension. 'unrestricted' means no restriction was imposed, not that everything was covered.",
-      "required": ["scope"],
+      "required": [
+        "scope"
+      ],
       "properties": {
-        "scope": { "type": "string", "enum": ["unrestricted", "enumerated", "not-applicable"] },
-        "values": { "type": "array", "items": {} },
-        "coverageObserved": { "type": "array", "items": {} }
+        "scope": {
+          "type": "string",
+          "enum": [
+            "unrestricted",
+            "enumerated",
+            "not-applicable"
+          ]
+        },
+        "values": {
+          "type": "array",
+          "items": {}
+        },
+        "coverageObserved": {
+          "type": "array",
+          "items": {}
+        }
       },
       "additionalProperties": false
     },
@@ -73,19 +110,42 @@
     },
     "family": {
       "type": "string",
-      "enum": ["exposure", "presentation", "reception", "fidelity", "seo", "access", "dynamics", "economics", "attainment", "attribution"]
+      "enum": [
+        "exposure",
+        "presentation",
+        "reception",
+        "fidelity",
+        "seo",
+        "access",
+        "dynamics",
+        "economics",
+        "attainment",
+        "attribution"
+      ]
     },
     "granularity": {
       "type": "string",
-      "enum": ["individual", "cohort", "aggregate", "commitment-only"]
+      "enum": [
+        "individual",
+        "cohort",
+        "aggregate",
+        "commitment-only"
+      ]
     },
     "provenance": {
       "type": "object",
       "description": "Who wrote this record and when, in registry clock values",
-      "required": ["declarant", "declaredAt"],
+      "required": [
+        "declarant",
+        "declaredAt"
+      ],
       "properties": {
-        "declarant": { "$ref": "#/$defs/address" },
-        "declaredAt": { "$ref": "#/$defs/clockValue" }
+        "declarant": {
+          "$ref": "#/$defs/address"
+        },
+        "declaredAt": {
+          "$ref": "#/$defs/clockValue"
+        }
       }
     }
   }

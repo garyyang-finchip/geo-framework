@@ -1,0 +1,18 @@
+{
+  "name": "geof-tools",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GEOF off-chain tool: canonicalize, hash, derive ids, validate records, build vectors",
+  "license": "CC0-1.0",
+  "scripts": {
+    "vectors": "node geof.js vectors",
+    "validate:a": "node geof.js case ../assets/erc-9999/examples/case-a-web-correction/case.json",
+    "validate:b": "node geof.js case ../assets/erc-9999/examples/case-b-agentic-skill/case.json"
+  },
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "canonicalize": "^2.1.0",
+    "ethers": "^6.17.0"
+  }
+}

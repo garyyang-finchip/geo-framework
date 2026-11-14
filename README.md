@@ -1,6 +1,6 @@
 # geo-framework — Generative Engine Optimization Framework (GEOF)
 
-**Status: skeleton v0.1 (2026-11-14). Architecture frozen; ERC text, interface, schemas and worked cases drafted. Reference contract, tests, validator and test-network evidence follow.**
+**Status: v0.1.0 (2026-11-15). Architecture frozen. ERC draft, reference registry with 50 Foundry tests, JSON Schemas, validator, vectors, two worked cases, ERCs filing package. Test-network evidence run pending funding.**
 
 GEOF is a descriptive framework for how generative engines — answer engines, AI search surfaces, agent runtimes with discovery layers — represent an object, how that representation is measured, and how independent parties exchange and verify the measurements. It lets independent parties declare, for the same object or dissemination process, what they observed; and, when a dissemination intent has been declared, how much of it was attained and how much can be attributed to the dissemination.
 
@@ -19,18 +19,49 @@ Two applications share the model: **Web GEO** (being cited in AI answers) and **
 ## Layout
 
 ```text
-ERCS/erc-9999.md                         ERC draft (placeholder number)
+ERCS/erc-9999.md                          ERC draft (placeholder number)
+contracts/GEOFRegistry.sol                reference registry (~7.9 KB runtime)
+contracts/interfaces/IGEOFRegistry.sol    interface with NatSpec
+test/                                     50 Foundry tests: registry rules, both cases end to end, vectors
+script/EvidenceRun.s.sol                  deploys and walks both cases; writes deployments/<network>.json
+scripts/evidence-run.sh                   anvil rehearsal / Sepolia driver
+scripts/make-filing-package.py            builds + lints ercs-pr-package/ (renumbering, discussions-to)
+tools/geof.js                             canonicalize, hash, derive ids, validate records, build vectors
 assets/erc-9999/
-  contracts/interfaces/IGEOFRegistry.sol  registry interface with NatSpec
-  schemas/                                JSON Schemas: defs, object, frame, source, method,
-                                          intent, metric-definition, observation, profile
-  schemas/geof-metric-vocabulary.json     informative starter vocabulary (no directions)
+  contracts/                              byte-identical copies of the two Solidity files (ERC assets)
+  schemas/                                JSON Schemas (defs, object, frame, source, method, intent,
+                                          metric-definition, observation, profile) + metric vocabulary
   contexts/geof.jsonld                    JSON-LD context
   examples/case-a-web-correction/         wide spread, low fidelity, attainment unknown
   examples/case-b-agentic-skill/          narrow reach, full fidelity, full attainment
-docs/concept-model.md                     one-picture summary + the two cases side by side
-docs/decision-log.md                      rulings behind the design
+  vectors/vectors.json                    subject ids, record hashes, declaration ids, id-derivation examples
+ercs-pr-package/                          what goes on the ethereum/ERCs branch (17 files)
+deployments/anvil.json                    rehearsal record
+docs/                                     concept model, decision log, Magicians post, filing + Sepolia runbooks
 ```
+
+## Build and test
+
+```bash
+forge install foundry-rs/forge-std      # once, after cloning
+forge build
+forge test                              # 50 tests
+scripts/evidence-run.sh anvil           # rehearsal: 43 transactions on a local chain
+
+cd tools && npm ci && cd ..
+node tools/geof.js case assets/erc-9999/examples/case-a-web-correction/case.json
+node tools/geof.js case assets/erc-9999/examples/case-b-agentic-skill/case.json
+node tools/geof.js vectors
+python3 -I scripts/make-filing-package.py
+```
+
+Solidity 0.8.28, EVM `cancun`, optimizer 200 runs, no via-IR.
+
+## Deployments
+
+| Network | GEOFRegistry | Record |
+| --- | --- | --- |
+| Sepolia | pending | `deployments/sepolia.json` |
 
 ## Relation to adjacent proposals
 
@@ -46,13 +77,10 @@ The ERC text references other frameworks descriptively and requires only ERC-165
 | ERC-8471 ADRF / ERC-8436 ACDF | disputes over a `statementId`; collective rulings on contested reference sets. |
 | ERC-8490 AMM | an agent's self-maintenance may refresh its own GEO profile. |
 
-## Roadmap
+## Filing
 
-1. Reference `GEOFRegistry.sol` + Foundry tests walking both cases on chain.
-2. Off-chain validator (schemas, canonicalization, the four consistency rules) + test vectors.
-3. Test-network deployment with recorded evidence.
-4. Ethereum Magicians thread, then the ERC pull request.
+See `docs/filing-runbook.md`: Magicians post → `discussions-to` → branch `add-erc-geo-framework` cut from `ethereum/ERCs` master → PR "Add ERC: Generative Engine Optimization Framework". Evidence run: `docs/sepolia-runbook.md`.
 
 ## License
 
-Text and assets: CC0-1.0.
+Text, schemas, examples and contracts: CC0-1.0.

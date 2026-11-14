@@ -1,0 +1,27 @@
+{
+  "accountA": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+  "accountB": "0xc170f0018b6f3B8620D1893eEA916630feE6b6f0",
+  "accountC": "0xbC20d24104aA23313cE2667849bEAA30b224E4FB",
+  "caseA": {
+    "frameId": "0x9055826e3004825ffcd1ed220857bcd0e670845f4529853191eaa4248806c139",
+    "intentId": "0xc48de58c53227c0779cdfe446da84a1014bd0237e0c099fe0318937428fb8f87",
+    "objectClaimId": "0x88221f476a27aa4cc43c8ce9d2e521778f64e74596bbcda80c7e5d7ce2341ff9",
+    "objectPageId": "0x9e756dfb8df42bd7ec13297e907b581368b22b9a58c1023389ef064ee1a0ce9a",
+    "processId": "0xa59990da11f188bb6b5c45436ff9ccfd57df6c6b0556e46c43db9f0f165c13a4",
+    "profileAuditorV1": "0xf7e6873d55f70b8a26e38d28e4bbf7a5922f23e311b47d69cbd7c1364b7f4e1a",
+    "profilePanelV1": "0xccba76b6d2d54bc2bc97557f902ecde0eb595fe3bce2e0952103b9cda4ffc817",
+    "profilePanelV2": "0x35a120f94de9e37cd1aba1aaaa18ded1221a8f36c943cd624d0fec1b8921acbd"
+  },
+  "caseB": {
+    "frameId": "0x0ec0ed931a1778783b8dd554b03922a3df719f2e0deed23141438e7c2f679ae6",
+    "intentId": "0x50196438e222e05d41751b3436109e8638a39e811ba9c4f175cc16235887775c",
+    "objectSkillId": "0xb97294705b1fc949e1c58cf9d07d80cc0aae40f9889420c236b85b62e72013e1",
+    "processId": "0x576ab7267b7529ce7ea53c1ce0e5f1858abbbdf068cb204b91cd49b5620f1db8",
+    "profileIndexerV1": "0x9924f51d103cd22a0d50404249318c4d4bd702590e49112d48c63d288ac94b30",
+    "profileProviderV1": "0xafe63d7eb1577c34c8418e3131f62b5f84df25009ac02327456f5dd5771983db"
+  },
+  "chainId": 31337,
+  "finishedAt": 1794674203,
+  "network": "anvil",
+  "registry": "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+}

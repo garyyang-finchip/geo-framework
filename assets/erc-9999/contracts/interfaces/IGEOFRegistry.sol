@@ -17,20 +17,20 @@ interface IGEOFRegistry {
 
     /// @notice Kinds of content-addressed declarations.
     enum DeclarationKind {
-        OBJECT,   // a subject being represented (engine-independent)
-        FRAME,    // the seven-dimension observation boundary
-        SOURCE,   // a data source with class, roles, party and verifiability
-        METHOD,   // an immutable, versioned method descriptor
-        INTENT,   // a dissemination intent (optional for a process)
-        METRIC    // an immutable, versioned metric definition
+        OBJECT, // a subject being represented (engine-independent)
+        FRAME, // the seven-dimension observation boundary
+        SOURCE, // a data source with class, roles, party and verifiability
+        METHOD, // an immutable, versioned method descriptor
+        INTENT, // a dissemination intent (optional for a process)
+        METRIC // an immutable, versioned metric definition
     }
 
     /// @notice Kinds of observations committed to a process version.
     enum ObservationKind {
-        EVENT,        // one run or delivery instance
-        AGGREGATE,    // period counts from a source whose granularity does not reach instances
-        FOLLOWUP,     // a recipient action after a representation, with a link basis
-        INTERVENTION  // an action on the object or its carriers
+        EVENT, // one run or delivery instance
+        AGGREGATE, // period counts from a source whose granularity does not reach instances
+        FOLLOWUP, // a recipient action after a representation, with a link basis
+        INTERVENTION // an action on the object or its carriers
     }
 
     // ---------------------------------------------------------------------
@@ -83,12 +83,7 @@ interface IGEOFRegistry {
     /// @notice The current version of a process was frozen by its opener.
     /// @param evidenceRoot      root over all commitments of this version, as the opener computed it
     /// @param observationCutoff clock value after which receptions are no longer attributed to this version
-    event ProcessClosed(
-        bytes32 indexed processId,
-        uint32 indexed version,
-        bytes32 evidenceRoot,
-        uint48 observationCutoff
-    );
+    event ProcessClosed(bytes32 indexed processId, uint32 indexed version, bytes32 evidenceRoot, uint48 observationCutoff);
 
     /// @notice A new open version was created for late observations.
     event AddendumOpened(bytes32 indexed processId, uint32 indexed version);
@@ -120,6 +115,9 @@ interface IGEOFRegistry {
     error GEOF_VersionOpen(bytes32 processId, uint32 version);
     error GEOF_UnknownVersion(bytes32 processId, uint32 version);
     error GEOF_UnknownProfile(bytes32 profileId);
+    error GEOF_DuplicateProfile(bytes32 profileId);
+    error GEOF_EmptyBinding();
+    error GEOF_ZeroCount();
     error GEOF_ZeroHash();
 
     // ---------------------------------------------------------------------
@@ -130,21 +128,15 @@ interface IGEOFRegistry {
     /// @dev Callable by any account. Reverts with GEOF_DuplicateDeclaration when the same account
     ///      re-declares an identical record. `supersedes`, when non-zero, MUST name a declaration
     ///      of the same kind by the same declarant. OBJECT declarations use `declareObject`.
-    function declare(
-        DeclarationKind kind,
-        bytes32 contentHash,
-        bytes32 supersedes,
-        string calldata uri
-    ) external returns (bytes32 id);
+    function declare(DeclarationKind kind, bytes32 contentHash, bytes32 supersedes, string calldata uri)
+        external
+        returns (bytes32 id);
 
     /// @notice Record an OBJECT declaration and bind it to a subject identifier.
     /// @param subjectId keccak256 of the canonical subject string `<scheme>:<domain>:<identifier>`
-    function declareObject(
-        bytes32 subjectId,
-        bytes32 contentHash,
-        bytes32 supersedes,
-        string calldata uri
-    ) external returns (bytes32 id);
+    function declareObject(bytes32 subjectId, bytes32 contentHash, bytes32 supersedes, string calldata uri)
+        external
+        returns (bytes32 id);
 
     // ---------------------------------------------------------------------
     // Processes
@@ -164,12 +156,7 @@ interface IGEOFRegistry {
     /// @notice Commit a batch of observations to the current open version of a process.
     /// @dev Callable by any account; attributable to msg.sender. Reverts with GEOF_VersionFrozen
     ///      when the current version is closed.
-    function commitObservations(
-        bytes32 processId,
-        bytes32 root,
-        uint64 count,
-        ObservationKind kind
-    ) external;
+    function commitObservations(bytes32 processId, bytes32 root, uint64 count, ObservationKind kind) external;
 
     /// @notice Freeze the current version of a process. Opener only.
     function closeProcess(bytes32 processId, bytes32 evidenceRoot, uint48 observationCutoff) external;
@@ -185,13 +172,9 @@ interface IGEOFRegistry {
     /// @notice Publish a profile against a frozen process version.
     /// @dev Callable by any account. `supersedes`, when non-zero, MUST name a profile by the same
     ///      publisher on the same process. The registry designates no official profile.
-    function publishProfile(
-        bytes32 processId,
-        uint32 version,
-        bytes32 profileHash,
-        bytes32 supersedes,
-        string calldata uri
-    ) external returns (bytes32 profileId);
+    function publishProfile(bytes32 processId, uint32 version, bytes32 profileHash, bytes32 supersedes, string calldata uri)
+        external
+        returns (bytes32 profileId);
 
     // ---------------------------------------------------------------------
     // Views

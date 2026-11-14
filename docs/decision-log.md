@@ -45,3 +45,4 @@ Design rulings that shaped the skeleton, in the order they were settled. Each en
 | N3 | Who may commit to another account's Process | anyone, attributable to the sender; only the opener closes or reopens |
 | N4 | Fifth value state | `UNDETERMINABLE` added |
 | N5 | License | CC0 for text and assets |
+| N6 | Process id derivation | `keccak256(abi.encode(opener, frameId, nonce))` — independent of block time so ids are predictable off-chain and scripts that reference a process in later transactions do not break between simulation and broadcast |
