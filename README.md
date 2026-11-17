@@ -86,6 +86,14 @@ The ERC text references other frameworks descriptively and requires only ERC-165
 
 See `docs/filing-runbook.md`: Magicians post → `discussions-to` → branch `add-erc-geo-framework` cut from `ethereum/ERCs` master → PR "Add ERC: Generative Engine Optimization Framework". Evidence run: `docs/sepolia-runbook.md`.
 
+## Authors and contributors
+
+- **Gary Yang** ([@garyyang-finchip](https://github.com/garyyang-finchip)) - author of the ERC text, the
+  framework model and the reference implementation.
+- **SG_XiaoMing** ([@SGXiaoMing](https://github.com/SGXiaoMing)) - contributor.
+
+The full list is kept in [`CONTRIBUTORS.md`](CONTRIBUTORS.md).
+
 ## License
 
 Text, schemas, examples and contracts: CC0-1.0.

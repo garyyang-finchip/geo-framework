@@ -1,4 +1,5 @@
-ADDED (34)
+ADDED (35)
+  CONTRIBUTORS.md
   ERCS/erc-8501.md
   assets/erc-8501/contexts/geof.jsonld
   assets/erc-8501/contracts/GEOFRegistry.sol
