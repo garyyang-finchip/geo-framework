@@ -1,6 +1,6 @@
 # geo-framework — ERC-8501 Generative Engine Optimization Framework (GEOF)
 
-**Status: v0.3.0 (2026-11-17). Architecture frozen. Assigned ERC-8501 by the editors (ethereum/ERCs PR #2176, not yet merged); reference registry with 50 Foundry tests, JSON Schemas, validator, vectors, two worked cases; Sepolia evidence run complete (43 transactions, both cases).**
+**Status: v0.3.1 (2026-11-17). ERC-8501 merged into ethereum/ERCs as a Draft on 2026-11-17 (PR #2176, commit 7214b22); reference registry with 50 Foundry tests, JSON Schemas, validator, vectors, two worked cases; Sepolia evidence run complete (43 transactions, both cases).**
 
 GEOF is a descriptive framework for how generative engines — answer engines, AI search surfaces, agent runtimes with discovery layers — represent an object, how that representation is measured, and how independent parties exchange and verify the measurements. It lets independent parties declare, for the same object or dissemination process, what they observed; and, when a dissemination intent has been declared, how much of it was attained and how much can be attributed to the dissemination.
 
@@ -9,7 +9,8 @@ GEOF assigns no desirability to any value. It defines no thresholds, weights, ra
 ## Links
 
 - Discussion: https://ethereum-magicians.org/t/erc-8501-generative-engine-optimization-framework/30396
-- ERC pull request: https://github.com/ethereum/ERCs/pull/2176 (branch `add-erc-geo-framework`, number ERC-8501)
+- ERC page: https://eips.ethereum.org/EIPS/eip-8501 (Draft)
+- ERC pull request: https://github.com/ethereum/ERCs/pull/2176 (merged 2026-11-17)
 
 ## What it defines
 
