@@ -5,7 +5,7 @@
 //   node tools/geof.js hash <file.json>                             -> contentHash of the canonical record
 //   node tools/geof.js validate <file.json>                         -> schema validation by record type
 //   node tools/geof.js case <examples/case-x/case.json>             -> validate every record in a case bundle
-//   node tools/geof.js vectors                                      -> (re)build assets/erc-9999/vectors/vectors.json
+//   node tools/geof.js vectors                                      -> (re)build assets/erc-8501/vectors/vectors.json
 //
 // Declaration id  = keccak256(abi.encode(kind, declarant, contentHash))
 // Profile id      = keccak256(abi.encode(processId, version, publisher, profileHash))
@@ -18,8 +18,8 @@ const Ajv = require("ajv/dist/2020");
 const addFormats = require("ajv-formats");
 
 const ROOT = path.resolve(__dirname, "..");
-const SCHEMA_DIR = path.join(ROOT, "assets", "erc-9999", "schemas");
-const VECTORS = path.join(ROOT, "assets", "erc-9999", "vectors", "vectors.json");
+const SCHEMA_DIR = path.join(ROOT, "assets", "erc-8501", "schemas");
+const VECTORS = path.join(ROOT, "assets", "erc-8501", "vectors", "vectors.json");
 const KIND = { "geof:object": 0, "geof:frame": 1, "geof:source": 2, "geof:method": 3, "geof:intent": 4, "geof:metric-definition": 5 };
 const abi = AbiCoder.defaultAbiCoder();
 
@@ -87,7 +87,7 @@ function buildVectors() {
     "caip19:eip155:11155111:erc721:0x8338000000000000000000000000000000000001/42",
   ];
   const cases = ["case-a-web-correction", "case-b-agentic-skill"].map((name) => {
-    const file = path.join(ROOT, "assets", "erc-9999", "examples", name, "case.json");
+    const file = path.join(ROOT, "assets", "erc-8501", "examples", name, "case.json");
     const bundle = JSON.parse(fs.readFileSync(file, "utf8"));
     const records = caseRecords(bundle)
       .filter(([, r]) => KIND[r.type] !== undefined || r.type === "geof:profile")

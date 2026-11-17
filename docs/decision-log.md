@@ -36,6 +36,10 @@ Design rulings that shaped the skeleton, in the order they were settled. Each en
 - Composite scores allowed only with components, weights and method.
 - Conclusions must not exceed the evidence (inherited from the dispute-resolution framework).
 
+## Number assignment (2026-11-14)
+
+The editors assigned **ERC-8501** in a review on ethereum/ERCs PR #2176. Files renamed to `ERCS/erc-8501.md` and `assets/erc-8501/`; JSON-LD namespace IRI moved to `https://eips.ethereum.org/EIPS/eip-8501#`; Ethereum Magicians topic 30396 retitled "ERC-8501: Generative Engine Optimization Framework". No example record or vector changed, so every content hash committed on Sepolia still matches.
+
 ## Pending
 
 | # | Question | Skeleton's choice |

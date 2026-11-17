@@ -6,7 +6,7 @@ import {GEOFRegistry} from "../contracts/GEOFRegistry.sol";
 import {IGEOFRegistry} from "../contracts/interfaces/IGEOFRegistry.sol";
 
 /// @notice Evidence run: deploys GEOFRegistry and walks case A and case B on chain with the record
-///         hashes from assets/erc-9999/vectors/vectors.json. Three accounts:
+///         hashes from assets/erc-8501/vectors/vectors.json. Three accounts:
 ///         A (DEPLOYER_PK)   — panel observer in case A, skill provider in case B
 ///         B (derived)       — company in case A, independent indexer in case B
 ///         C (derived)       — auditor (second publisher) in case A
@@ -35,7 +35,7 @@ contract EvidenceRun is Script {
         pkC = uint256(keccak256(abi.encode(pkA, "geof-evidence-C")));
         B = vm.addr(pkB);
         C = vm.addr(pkC);
-        vectors = vm.readFile("assets/erc-9999/vectors/vectors.json");
+        vectors = vm.readFile("assets/erc-8501/vectors/vectors.json");
         string memory network = vm.envOr("NETWORK", string("anvil"));
         uint256 fund = vm.envOr("FUND_WEI", uint256(0.004 ether));
 

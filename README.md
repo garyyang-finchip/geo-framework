@@ -1,6 +1,6 @@
-# geo-framework — Generative Engine Optimization Framework (GEOF)
+# geo-framework — ERC-8501 Generative Engine Optimization Framework (GEOF)
 
-**Status: v0.2.0 (2026-11-15). Architecture frozen. ERC draft filed as ethereum/ERCs PR #2176; reference registry with 50 Foundry tests, JSON Schemas, validator, vectors, two worked cases; Sepolia evidence run complete (43 transactions, both cases).**
+**Status: v0.3.0 (2026-11-17). Architecture frozen. Assigned ERC-8501 by the editors (ethereum/ERCs PR #2176, not yet merged); reference registry with 50 Foundry tests, JSON Schemas, validator, vectors, two worked cases; Sepolia evidence run complete (43 transactions, both cases).**
 
 GEOF is a descriptive framework for how generative engines — answer engines, AI search surfaces, agent runtimes with discovery layers — represent an object, how that representation is measured, and how independent parties exchange and verify the measurements. It lets independent parties declare, for the same object or dissemination process, what they observed; and, when a dissemination intent has been declared, how much of it was attained and how much can be attributed to the dissemination.
 
@@ -8,8 +8,8 @@ GEOF assigns no desirability to any value. It defines no thresholds, weights, ra
 
 ## Links
 
-- Discussion: https://ethereum-magicians.org/t/draft-erc-generative-engine-optimization-framework-geof-attributable-declarations-observation-commitments-and-profiles-for-how-generative-engines-represent-objects/30396
-- ERC pull request: https://github.com/ethereum/ERCs/pull/2176 (branch `add-erc-geo-framework`, placeholder number 9999)
+- Discussion: https://ethereum-magicians.org/t/erc-8501-generative-engine-optimization-framework/30396
+- ERC pull request: https://github.com/ethereum/ERCs/pull/2176 (branch `add-erc-geo-framework`, number ERC-8501)
 
 ## What it defines
 
@@ -24,7 +24,7 @@ Two applications share the model: **Web GEO** (being cited in AI answers) and **
 ## Layout
 
 ```text
-ERCS/erc-9999.md                          ERC draft (placeholder number)
+ERCS/erc-8501.md                          ERC draft (ERC-8501)
 contracts/GEOFRegistry.sol                reference registry (~7.9 KB runtime)
 contracts/interfaces/IGEOFRegistry.sol    interface with NatSpec
 test/                                     50 Foundry tests: registry rules, both cases end to end, vectors
@@ -32,7 +32,7 @@ script/EvidenceRun.s.sol                  deploys and walks both cases; writes d
 scripts/evidence-run.sh                   anvil rehearsal / Sepolia driver
 scripts/make-filing-package.py            builds + lints ercs-pr-package/ (renumbering, discussions-to)
 tools/geof.js                             canonicalize, hash, derive ids, validate records, build vectors
-assets/erc-9999/
+assets/erc-8501/
   contracts/                              byte-identical copies of the two Solidity files (ERC assets)
   schemas/                                JSON Schemas (defs, object, frame, source, method, intent,
                                           metric-definition, observation, profile) + metric vocabulary
@@ -54,8 +54,8 @@ forge test                              # 50 tests
 scripts/evidence-run.sh anvil           # rehearsal: 43 transactions on a local chain
 
 cd tools && npm ci && cd ..
-node tools/geof.js case assets/erc-9999/examples/case-a-web-correction/case.json
-node tools/geof.js case assets/erc-9999/examples/case-b-agentic-skill/case.json
+node tools/geof.js case assets/erc-8501/examples/case-a-web-correction/case.json
+node tools/geof.js case assets/erc-8501/examples/case-b-agentic-skill/case.json
 node tools/geof.js vectors
 python3 -I scripts/make-filing-package.py
 ```

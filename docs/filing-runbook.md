@@ -1,5 +1,7 @@
 # Filing runbook — ethereum/ERCs
 
+Status: filed 2026-11-14 as ethereum/ERCs PR #2176 from branch `add-erc-geo-framework` (placeholder 9999); number ERC-8501 assigned by the editors the same day. The repository now carries `ERCS/erc-8501.md` and `assets/erc-8501/`; the steps below are the record of how it was filed and the procedure for future revisions.
+
 Order of operations, in the sequence that has worked for the earlier proposals in this line.
 
 ## 1. Repository
@@ -14,7 +16,7 @@ cd geo-framework
 forge install foundry-rs/forge-std
 forge test
 cd tools && npm ci && cd ..
-node tools/geof.js case assets/erc-9999/examples/case-a-web-correction/case.json
+node tools/geof.js case assets/erc-8501/examples/case-a-web-correction/case.json
 ```
 
 ## 2. Ethereum Magicians
@@ -28,7 +30,7 @@ node tools/geof.js case assets/erc-9999/examples/case-a-web-correction/case.json
 python3 -I scripts/make-filing-package.py --discussions-to https://ethereum-magicians.org/t/<slug>/<id>
 ```
 
-This writes `ercs-pr-package/ERCS/erc-9999.md` and `ercs-pr-package/assets/erc-9999/**` (17 files) and lints them: no CJK, description ≤ 140 characters, no inline code span containing `eip-9999`, no directory-style asset links, every linked asset present, external links only to the allow-list. Also apply the same `discussions-to` line to `ERCS/erc-9999.md` in the repository.
+This writes `ercs-pr-package/ERCS/erc-8501.md` and `ercs-pr-package/assets/erc-8501/**` (17 files; 9999 at the time of filing) and lints them: no CJK, description ≤ 140 characters, no inline code span containing `eip-9999`, no directory-style asset links, every linked asset present, external links only to the allow-list. Also apply the same `discussions-to` line to `ERCS/erc-9999.md` in the repository.
 
 ## 4. Branch
 

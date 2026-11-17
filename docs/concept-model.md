@@ -1,6 +1,6 @@
 # GEOF concept model
 
-The Generative Engine Optimization Framework (GEOF) records how a generative engine represented an object, how that was measured, and what independent parties may say about it. This page is the one-picture summary of the record types and the two worked cases that exercise them. The normative text is `ERCS/erc-9999.md`.
+The Generative Engine Optimization Framework (GEOF) records how a generative engine represented an object, how that was measured, and what independent parties may say about it. This page is the one-picture summary of the record types and the two worked cases that exercise them. The normative text is `ERCS/erc-8501.md`.
 
 ## One observation model
 
@@ -75,4 +75,4 @@ flowchart TB
 | Attribution | not stated | `UNDETERMINABLE`, basis `declared` |
 | Reading | wide, unfaithful, effect unknown | narrow, faithful, fully attained, contribution unproven |
 
-Neither case receives a score. The full records are in `assets/erc-9999/examples/`.
+Neither case receives a score. The full records are in `assets/erc-8501/examples/`.

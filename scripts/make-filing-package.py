@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Build the ethereum/ERCs filing package for GEOF.
 
-    python3 scripts/make-filing-package.py                 # placeholder 9999 -> ercs-pr-package/
-    python3 scripts/make-filing-package.py --number 8512   # renumbered package (after the editor assigns a number)
+    python3 scripts/make-filing-package.py                 # ERC-8501 -> ercs-pr-package/
+    python3 scripts/make-filing-package.py --number N      # build under another number (not normally needed)
     python3 scripts/make-filing-package.py --discussions-to https://ethereum-magicians.org/t/...  (patch the preamble)
 
 Steps:
-  1. sync assets/erc-9999/contracts/ from contracts/ (interface + reference registry are byte-identical)
-  2. copy ERCS/erc-9999.md and assets/erc-9999/** into ercs-pr-package/ under the target number
+  1. sync assets/erc-8501/contracts/ from contracts/ (interface + reference registry are byte-identical)
+  2. copy ERCS/erc-8501.md and assets/erc-8501/** into ercs-pr-package/ under the target number
   3. rewrite number-bearing paths and the preamble `eip:` line
   4. lint: no CJK characters, description <= 140 chars, no backticks around eip-N IRIs,
      no directory-style asset links, asset links only as ../assets/eip-N/<file>, every linked asset exists
@@ -21,14 +21,14 @@ import shutil
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC_NUM = "9999"
+SRC_NUM = "8501"
 SKIP_DIRS = {"node_modules", "__pycache__"}
 
 
 def sync_contracts():
     pairs = [
-        ("contracts/interfaces/IGEOFRegistry.sol", "assets/erc-9999/contracts/interfaces/IGEOFRegistry.sol"),
-        ("contracts/GEOFRegistry.sol", "assets/erc-9999/contracts/GEOFRegistry.sol"),
+        ("contracts/interfaces/IGEOFRegistry.sol", "assets/erc-8501/contracts/interfaces/IGEOFRegistry.sol"),
+        ("contracts/GEOFRegistry.sol", "assets/erc-8501/contracts/GEOFRegistry.sol"),
     ]
     for src, dst in pairs:
         s, d = os.path.join(ROOT, src), os.path.join(ROOT, dst)

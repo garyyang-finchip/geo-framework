@@ -5,7 +5,7 @@ import {Test} from "forge-std/Test.sol";
 import {GEOFRegistry} from "../contracts/GEOFRegistry.sol";
 import {IGEOFRegistry} from "../contracts/interfaces/IGEOFRegistry.sol";
 
-/// @notice Ties the Solidity id derivations to the vectors in assets/erc-9999/vectors/vectors.json
+/// @notice Ties the Solidity id derivations to the vectors in assets/erc-8501/vectors/vectors.json
 ///         (built by tools/geof.js). The expected values are written out here so the test is self-contained.
 contract VectorsTest is Test {
     GEOFRegistry internal reg;

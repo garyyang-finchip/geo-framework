@@ -487,6 +487,6 @@
   "notes": [
     "Run from an EC2 host with forge script --broadcast --skip-simulation (gas limits from live estimation).",
     "Sepolia gas used was 1.0x-9.7x the local anvil figures per transaction; a pre-signed batch with 4x local limits would have failed on the deployment.",
-    "Record contents for every declaration are in assets/erc-9999/examples/ and their hashes in assets/erc-9999/vectors/vectors.json; observation roots are keccak256 labels of the batches (no instance records are published for the synthetic cases)."
+    "Record contents for every declaration are in assets/erc-8501/examples/ and their hashes in assets/erc-8501/vectors/vectors.json; observation roots are keccak256 labels of the batches (no instance records are published for the synthetic cases)."
   ]
 }

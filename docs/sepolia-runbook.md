@@ -2,7 +2,7 @@
 
 Completed 2026-11-14: see `docs/sepolia-evidence.md` and `deployments/sepolia.json`. The steps below are kept for re-runs (a re-run with the same deployer key creates a new registry; ids will differ because the per-account nonces have moved).
 
-`script/EvidenceRun.s.sol` deploys `GEOFRegistry` and walks case A and case B on chain, using the record hashes from `assets/erc-9999/vectors/vectors.json`. It writes `deployments/<network>.json`. The anvil rehearsal (`deployments/anvil.json`) completed with 43 transactions.
+`script/EvidenceRun.s.sol` deploys `GEOFRegistry` and walks case A and case B on chain, using the record hashes from `assets/erc-8501/vectors/vectors.json`. It writes `deployments/<network>.json`. The anvil rehearsal (`deployments/anvil.json`) completed with 43 transactions.
 
 ## Accounts
 

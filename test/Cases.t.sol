@@ -8,7 +8,7 @@ import {IGEOFRegistry} from "../contracts/interfaces/IGEOFRegistry.sol";
 /// @notice The two worked cases of the specification, walked on chain end to end.
 ///         Case A: a web correction notice — wide spread, low fidelity, attainment unknown.
 ///         Case B: an agentic skill — narrow reach, full fidelity, full attainment.
-///         Record contents live in assets/erc-9999/examples/; here only their hashes matter.
+///         Record contents live in assets/erc-8501/examples/; here only their hashes matter.
 contract CasesTest is Test {
     GEOFRegistry internal reg;
 
